@@ -189,6 +189,18 @@ class M_register extends CI_Model {
         }
     }
 
+    function get_location_region($reg_id) {
+        $this->db->select('*');
+        $this->db->from('customer_master');
+        $this->db->where('cust_id', $reg_id);
+        $user = $this->db->get();
+        if ($user->num_rows() > 0) {
+            return $user->row()->location_status;
+        } else {
+            return '';
+        }
+    }
+
     function update_user() {
         $post = $this->input->post();
         $cust_id = $post['cust_id'];

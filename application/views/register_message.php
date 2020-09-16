@@ -30,6 +30,13 @@
                     <strong><?php echo ($this->session->flashdata('msg')) ? $this->session->flashdata('msg') : ''; ?></strong> 
                 </div>
             <?php } ?>
+            <?php if (isset($message)) echo $message; ?>
+            <div class="row">   
+                <div class="col-md-12" style="text-align: center;">
+                    <a href="<?= base_url() ?>event/addEvent/<?= $location_status ?>" class="btn btn-success">Add to my Google Calendar</a>
+                    <a href="<?= base_url() ?>outlookcalendar/addEvent/<?= $location_status ?>" class="btn btn-success">Add to my Outlook Calendar</a>
+                </div>
+            </div>
         </div>
     </div>
 </section>

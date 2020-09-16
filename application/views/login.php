@@ -53,7 +53,7 @@
                 $("#errorpassword").text("Please Enter Password").fadeIn('slow').fadeOut(5000);
                 return false;
             } else {
-                return true; //submit form now
+                return true; //submit form
             }
             return false; //Prevent form to submitting
         });
