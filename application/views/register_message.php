@@ -34,9 +34,16 @@
             <div class="row">   
                 <div class="col-md-12" style="text-align: center;">
                     <a href="<?= base_url() ?>event/addEvent/<?= $location_status ?>" class="btn btn-success">Add to my Google Calendar</a>
-                  <a href="<?= base_url() ?>outlookcalendar/addEvent/<?= $location_status ?>" class="btn btn-success">Add to my Outlook Calendar</a>
+                    <a href="<?= base_url() ?>outlookcalendar/addEvent/<?= $location_status ?>" class="btn btn-success">Add to my Outlook Calendar</a>
                 </div>
             </div>
+            <?php
+            $session_set = array(
+                'location_status' => $location_status
+            );
+            $this->session->set_userdata($session_set);
+           
+            ?>
         </div>
     </div>
 </section>

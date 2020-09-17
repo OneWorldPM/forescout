@@ -47,9 +47,4 @@ class Event extends CI_Controller {
         $this->load->view('register_message', $data);
         $this->load->view('footer');
     }
-
-    public function eventList() {
-        
-    }
-
 }
