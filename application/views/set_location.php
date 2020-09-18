@@ -90,7 +90,7 @@
     </div>
     <div class="container-fullscreen">
         <div class="row" style="text-align: center; margin-top: 15px;">
-            <a href="<?= base_url() ?>login" class="button yellow button-3d p-10" style="margin: 0px 0; margin-right: 123px;"><span>Already registered? Click here to login</span></a> 
+            <a href="<?= base_url() ?>login" class="button yellow button-3d p-10" style="margin: 0px 0; margin-right: 60px;"><span>Already registered? Click here to login</span></a> 
         </div>
         <div class="row">
             <div class="col-md-10 m-t-30 col-md-offset-1">
@@ -146,3 +146,4 @@
         });
     });
 </script>
+
