@@ -31,10 +31,10 @@ class Sendemail extends CI_Controller {
                 if ($response->access_token != "") {
                     
                     $leads = array(
-                        array("id" => 16)
+                        array("id" => 23)
                     );
                     $token = array(
-                        array("name" => "test", "value" => "123")
+                        //array("name" => "TestToken", "value" => "123")
                     );
                     $requestBody = array(
                         "input" => array("leads" => $leads, "tokens" => $token)
