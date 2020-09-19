@@ -29,14 +29,21 @@ class Sendemail extends CI_Controller {
         if (!empty($response)) {
             if (isset($response->access_token)) {
                 if ($response->access_token != "") {
-                    $requestBody = "&emailAddress=vishaltesting16@gmail.com";
-                    $requestBody .= "&textOnly=Test Email";
-                    $requestBody .= "&leadId=16";
-                    $id = 1529;
-                     $url = "https://444-cqd-069.mktorest.com/rest/asset/v1/email/" . $id . "/sendSample.json?access_token=" . $response->access_token;
+                    
+                    $leads = array(
+                        array("id" => 16)
+                    );
+                    $token = array(
+                        array("name" => "test", "value" => "123")
+                    );
+                    $requestBody = array(
+                        "input" => array("leads" => $leads, "tokens" => $token)
+                    );
+                    $requestBody = json_encode($requestBody);
+                    $url = "https://444-cqd-069.mktorest.com/rest/v1/campaigns/21786/trigger.json?access_token=" . $response->access_token;
                     $ch = curl_init($url);
                     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-                    curl_setopt($ch, CURLOPT_HTTPHEADER, array('accept: application/json'));
+                    curl_setopt($ch, CURLOPT_HTTPHEADER, array('accept: application/json', 'Content-Type: application/json'));
                     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
                     curl_setopt($ch, CURLOPT_POST, 1);
                     curl_setopt($ch, CURLOPT_POSTFIELDS, $requestBody);
