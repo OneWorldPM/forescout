@@ -1,7 +1,7 @@
 <!-- SECTION -->
 <style>
     #home_first_section{
-        background-image: url(<?= base_url() ?>front_assets/images/bg_login.jpg); 
+        background-image: url(<?= base_url() ?>front_assets/images/tiada.jpg); 
         background-size: cover !important; 
         background-origin: content-box; 
         background-attachment: fixed;

@@ -31,7 +31,7 @@
         content: "✖";
     }
 </style>
-<section class="parallax" style="background-image: url(<?= base_url() ?>front_assets/images/bg_login.jpg); top: 80; padding-top: 80px;">
+<section class="parallax" style="background-image: url(<?= base_url() ?>front_assets/images/tiada.jpg); top: 80; padding-top: 80px;">
     <div class="container container-fullscreen">
         <div class="text-middle">
             <div class="row p-b-40">
