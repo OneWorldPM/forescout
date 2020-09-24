@@ -10,6 +10,7 @@ class Outlookcalendar extends CI_Controller {
     }
 
     public function addEvent($location_status) {
+        
         $tbl_region = $this->db->get_where("tbl_region", array("region_name" => $location_status))->row();
         if (!empty($tbl_region)) {
             $date = strtotime($tbl_region->start_date);
@@ -34,7 +35,7 @@ class Outlookcalendar extends CI_Controller {
         echo "BEGIN:VEVENT\n";
         echo "UID:" . date('Ymd') . 'T' . date('His') . "-" . rand() . "-https://yourconference.live/forescout\n"; // required by Outlok
         echo "DTSTAMP:" . date('Ymd') . 'T' . date('His') . "\n"; // required by Outlook
-        echo "DTSTART:20200921T000000\n";
+        echo "DTSTART:".$startTime."T000000\n";
         echo "SUMMARY:".$subject."\n";
         echo "DESCRIPTION: ".$desc."\n";
         echo "END:VEVENT\n";
