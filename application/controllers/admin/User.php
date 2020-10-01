@@ -107,7 +107,7 @@ class User extends CI_Controller {
         $user_details = $this->db->get_where("customer_master", array("cust_id" => $cust_id))->row();
         $from = 'admin@yourconference.live';
         $subject = 'Forescout : Your Account is Active';
-        $message = '<p>Thanks for registering! Your account is Active<br><br><br> Best Regards,<br>Forescout Team<p>';
+        $message = '<p> Your account is approved by admin<br><br><br> Best Regards,<br>Forescout Team<p>';
         $this->common->sendEmail($from, trim($user_details->email), $subject, $message);
 
         $this->db->update('customer_master', array("customer_master_status" => 1), array('cust_id' => $cust_id));
