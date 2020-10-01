@@ -97,6 +97,7 @@ class M_register extends CI_Model {
             $set = array(
                 'first_name' => trim($post['first_name']),
                 'last_name' => trim($post['last_name']),
+				'email' => trim($post['email']),
                 'password' => base64_encode($post['password']),
                 'job_title' => trim($post['job_title']),
                 'title' => trim($post['job_title']),
@@ -214,6 +215,7 @@ class M_register extends CI_Model {
         $set = array(
             'first_name' => trim($post['first_name']),
             'last_name' => trim($post['last_name']),
+			'email' => trim($post['email']),
             'specialty' => "",
             'phone' => trim($post['cell_phone']),
             'company_name' => trim($post['company_name']),
