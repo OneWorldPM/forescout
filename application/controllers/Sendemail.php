@@ -25,16 +25,17 @@ class Sendemail extends CI_Controller {
         $response = curl_exec($curl);
         curl_close($curl);
         $response = json_decode($response);
-
         if (!empty($response)) {
+
             if (isset($response->access_token)) {
+
                 if ($response->access_token != "") {
-                    
+
                     $leads = array(
-                        array("id" => 23)
+                        array("id" => 16)
                     );
                     $token = array(
-                        //array("name" => "TestToken", "value" => "123")
+                            //array("name" => "TestToken", "value" => "123")
                     );
                     $requestBody = array(
                         "input" => array("leads" => $leads, "tokens" => $token)

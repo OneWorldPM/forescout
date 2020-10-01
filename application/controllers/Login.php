@@ -37,7 +37,7 @@ class Login extends CI_Controller {
             $data = $this->objlogin->user_login($arr);
             if ($data) {
                 if ($data['customer_master_status'] == 0) {
-		$this->session->set_flashdata('msg', '<div class="alert alert-danger">Your account is pending verification</div>');
+                    $this->session->set_flashdata('msg', '<div class="alert alert-danger">Your account is pending verification</div>');
                     redirect('login');
                 } else if ($data['customer_master_status'] == 2) {
                     $this->session->set_flashdata('msg', '<div class="alert alert-danger">Your account has been pending account rejected</div>');
@@ -126,14 +126,15 @@ class Login extends CI_Controller {
                         $lead_response = curl_exec($curl);
                         curl_close($curl);
                         $lead_response = json_decode($lead_response);
-                      
+
                         if (!empty($lead_response)) {
                             if ($lead_response->success == 1) {
                                 if (!empty($lead_response->result[0])) {
                                     if ($lead_response->result[0]->email != "") {
                                         $user_details = $this->db->get_where("customer_master", array("email" => $lead_response->result[0]->email))->row();
+
                                         if (!empty($user_details)) {
-                                            
+
                                             $set = array(
                                                 'first_name' => $lead_response->result[0]->firstName,
                                                 'last_name' => $lead_response->result[0]->lastName,
@@ -154,7 +155,7 @@ class Login extends CI_Controller {
                                                 'website' => $lead_response->result[0]->website,
                                                 'register_date' => date("Y-m-d h:i")
                                             );
-                                            $this->db->update("customer_master", $set,array("cust_id"=>$cust_id));
+                                            $this->db->update("customer_master", $set, array("cust_id" => $cust_id));
                                             $cust_id = $user_details->cust_id;
                                             redirect('setlocation?id=' . base64_encode($cust_id) . '&type=email_login');
 //                                            $token = $this->objlogin->update_user_token($user_details->cust_id);
@@ -167,7 +168,7 @@ class Login extends CI_Controller {
 //                                                'userType' => 'user'
 //                                            );
 //                                            $this->session->set_userdata($session);
-                                           // redirect('setlocation?id=' . base64_encode($cust_id) . '&type=register');
+                                            // redirect('setlocation?id=' . base64_encode($cust_id) . '&type=register');
                                             //redirect('home');
                                         } else {
                                             $this->db->order_by("cust_id", "desc");
@@ -208,6 +209,26 @@ class Login extends CI_Controller {
                                             $cust_id = $this->db->insert_id();
                                             $user_details = $this->db->get_where("customer_master", array("cust_id" => $cust_id))->row();
                                             if (!empty($user_details)) {
+                                                $leads = array(
+                                                    array("id" => $id)
+                                                );
+                                                $token = array(
+                                                        //array("name" => "TestToken", "value" => "123")
+                                                );
+                                                $requestBody = array(
+                                                    "input" => array("leads" => $leads, "tokens" => $token)
+                                                );
+                                                $requestBody = json_encode($requestBody);
+                                                $url = "https://444-cqd-069.mktorest.com/rest/v1/campaigns/21786/trigger.json?access_token=" . $response->access_token;
+                                                $ch = curl_init($url);
+                                                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                                                curl_setopt($ch, CURLOPT_HTTPHEADER, array('accept: application/json', 'Content-Type: application/json'));
+                                                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+                                                curl_setopt($ch, CURLOPT_POST, 1);
+                                                curl_setopt($ch, CURLOPT_POSTFIELDS, $requestBody);
+                                                curl_getinfo($ch);
+                                                $send_email_response = curl_exec($ch);
+                                                
                                                 redirect('setlocation?id=' . base64_encode($cust_id) . '&type=email_login');
 //                                                $token = $this->objlogin->update_user_token($user_details->cust_id);
 //                                                $session = array(
