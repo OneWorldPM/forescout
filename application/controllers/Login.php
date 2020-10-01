@@ -37,7 +37,7 @@ class Login extends CI_Controller {
             $data = $this->objlogin->user_login($arr);
             if ($data) {
                 if ($data['customer_master_status'] == 0) {
-					$this->session->set_flashdata('msg', '<div class="alert alert-danger">Your account is pending verification</div>');
+		$this->session->set_flashdata('msg', '<div class="alert alert-danger">Your account is pending verification</div>');
                     redirect('login');
                 } else if ($data['customer_master_status'] == 2) {
                     $this->session->set_flashdata('msg', '<div class="alert alert-danger">Your account has been pending account rejected</div>');

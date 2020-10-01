@@ -63,14 +63,19 @@ class Register extends CI_Controller {
                 $msg = "Thank you for your interest in the conference; Staff will approve your registration shortly. Please check your inbox.";
             }
             $this->session->set_flashdata('msg', $msg);
-            header('location:' . base_url() . 'register/register_message/'.$result); //Some Error
+            $myprofile = $this->objregister->get_user_profile_details($result);
+            $from = 'admin@yourconference.live';
+            $subject = 'Registration is Successful';
+            $message = '<p>Thanks for registering! Your account is pending verification<br><br><br> Best Regards,<br>Forescout Team<p>';
+            $this->common->sendEmail($from, trim($myprofile->email), $subject, $message);
+            header('location:' . base_url() . 'register/register_message/' . $result); //Some Error
         }
     }
 
     function register_message($cust_id) {
         $data["location_status"] = $this->objregister->get_location_region($cust_id);
         $this->load->view('main_header');
-        $this->load->view('register_message',$data);
+        $this->load->view('register_message', $data);
         $this->load->view('footer');
     }
 
